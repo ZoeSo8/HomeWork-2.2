@@ -24,7 +24,7 @@ public class Main {
         //Получение стоимости корзины с несколькими товарами.
         basket1.getProductCount();
         //Поиск товара, который есть в корзине.
-        basket1.findByName(pen);
+        System.out.println(basket1.findByName(pen));
         //Поиск товара, которого нет в корзине.
         basket1.findByName(sticker);
         //Очистка корзины.

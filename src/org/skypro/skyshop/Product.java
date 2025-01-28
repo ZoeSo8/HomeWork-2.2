@@ -34,13 +34,13 @@ public class Product {
         }
         @Override
         public boolean equals(Object other){
-            if (this==other){
+            if (this == other){
                 return true;
             }
-            if (this.getClass() != other.getClass()) {
+            if (other == null || this.getClass() != other.getClass()) {
                 return false;
             }
             Product c2 = (Product) other;
-            return named.equals(c2.named);
+            return named.equals(c2.named)&& this.price == c2.price;
         }
     }

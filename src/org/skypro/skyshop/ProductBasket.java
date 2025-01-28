@@ -3,25 +3,25 @@ package org.skypro.skyshop;
 import java.util.Arrays;
 
 public class ProductBasket {
-    private static Product[] products;
-    private static int freeIndex;
+    private Product[] products;
+    private int size = 0;
     private static int MAX_PRODUCTS = 5;
 
 
-    public void ProductBasket() {
+    public ProductBasket() {
         this.products = new Product[MAX_PRODUCTS];
-        this.freeIndex = 0;
+
     }
 
-    public static void addProduct(Product product) {
-        if (freeIndex < MAX_PRODUCTS) {
-            products (freeIndex) = product;
-            freeIndex++;
+    public void addProduct(Product product) {
+        if (size < MAX_PRODUCTS) {
+            products [size] = product;
+            size++;
         } else {
             System.out.println("Невозможно добавить продукт");
         }
     }
-    public static int summBasket() {
+    public int summBasket() {
         int summ = 0;
         for (Product product : products) {
             if (product != null) {
@@ -42,12 +42,12 @@ public class ProductBasket {
     }
 
     public void printBasket() {
-        if (getProductCount() <= 0) {
+        if (size == 0) {
             System.out.println("В корзине пусто");
             return;
         }
         for (Product product : products) {
-            if (product != null) ;
+            if (product != null)
             {
                 System.out.println(product.getNamed() + " " + product.getPrice());
             }
@@ -55,9 +55,9 @@ public class ProductBasket {
         System.out.println("Итого: " + summBasket());
     }
 
-    public boolean findByName(Product name) {
+    public boolean findByName(Product productToFind) {
         for (Product product : products) {
-            if (product != null && product.getNamed().equals(name)) {
+            if (product != null && productToFind !=null && product.getNamed().equals(productToFind.getNamed())) {
                 return true;
             }
         }
