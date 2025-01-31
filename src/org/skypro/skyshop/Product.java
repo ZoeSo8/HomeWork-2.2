@@ -1,36 +1,28 @@
 package org.skypro.skyshop;
 
-public class Product {
-    private String named;
-    private int price;
+public abstract class Product {
+    private String namedAbs;
 
-    public Product (String named, int price) {
-        this.named = named;
-        this.price = price;
+    public Product (String namedAbs) {
+        this.namedAbs = namedAbs;
     }
 
-    public String getNamed() {
-        return this.named;
+    public String getNamedAbs() {
+        return this.namedAbs;
     }
+    public abstract int getPrice();
 
-    public int getPrice() {
-        return this.price;
+
+    public void setNamed(String namedAbs) {
+        this.namedAbs = namedAbs;
     }
-
-    public void setNamed(String named) {
-        this.named = named;
-    }
-
-        public void setPrice(int price) {
-            this.price = price;
-        }
         @Override
         public String toString() {
-            return "Наименование " + this.named + ", Цена " + this.price;
+            return "Наименование " + this.namedAbs;
         }
         @Override
         public int hashCode() {
-            return java.util.Objects.hash(named,price);
+            return java.util.Objects.hash(namedAbs);
         }
         @Override
         public boolean equals(Object other){
@@ -41,6 +33,8 @@ public class Product {
                 return false;
             }
             Product c2 = (Product) other;
-            return named.equals(c2.named)&& this.price == c2.price;
+            return namedAbs.equals(c2.namedAbs);
         }
-    }
+        public abstract boolean isSpecial ();
+}
+
