@@ -46,18 +46,27 @@ public class ProductBasket {
             System.out.println("В корзине пусто");
             return;
         }
-        for (Product product : products) {
-            if (product != null)
-            {
-                System.out.println(product.getNamed() + " " + product.getPrice());
+        for (Product product: products){
+            if (product !=null){
+                System.out.println(product);
             }
         }
+        System.out.println("Итого специальных продуктов: " + summSpecialProduct());
         System.out.println("Итого: " + summBasket());
     }
-
+    public int summSpecialProduct (){
+        int SpecialProduct = 0;
+        for (Product product: products) {
+            if ((product != null && product.isSpecial()) == true) {
+                if (product.isSpecial()) ;
+                SpecialProduct++;
+            }
+        }
+            return SpecialProduct;
+        }
     public boolean findByName(Product productToFind) {
         for (Product product : products) {
-            if (product != null && productToFind !=null && product.getNamed().equals(productToFind.getNamed())) {
+            if (product != null && productToFind !=null && product.getNamedAbs().equals(productToFind.getNamedAbs())) {
                 return true;
             }
         }
