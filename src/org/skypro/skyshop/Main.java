@@ -2,14 +2,14 @@ package org.skypro.skyshop;
 
 public class Main {
     public static void main(String[] args) {
-        SimpleProduct pen = new SimpleProduct("Ручка", 100);
-        SimpleProduct book = new SimpleProduct("Книга", 500);
-        SimpleProduct box = new SimpleProduct("Коробка",200);
-        SimpleProduct sticker = new SimpleProduct("Стикер", 150);
-        SimpleProduct pencil = new SimpleProduct("Карандаш", 50);
-        SimpleProduct marker = new SimpleProduct("Маркер", 300);
-        FixPriceProduct slimeFix = new FixPriceProduct("Слайм");
-        DiscountedProduct penDiscount = new DiscountedProduct(pen.getNamedAbs(), 100, 20 );
+        Product pen = new SimpleProduct("Ручка", 100);
+        Product book = new SimpleProduct("Книга", 500);
+        Product box = new SimpleProduct("Коробка",200);
+        Product sticker = new SimpleProduct("Стикер", 150);
+        Product pencil = new SimpleProduct("Карандаш", 50);
+        Product marker = new SimpleProduct("Маркер", 300);
+        Product slimeFix = new FixPriceProduct("Слайм");
+        Product penDiscount = new DiscountedProduct(pen.getNamedAbs(), 100, 20 );
         ProductBasket basket1 = new ProductBasket();
         ProductBasket basket2 = new ProductBasket();
         ProductBasket basket3 = new ProductBasket();

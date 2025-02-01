@@ -4,18 +4,18 @@ import java.util.Objects;
 
 public class DiscountedProduct extends Product {
     private int basePrice;
-    private int discountPricePercent;
-    private int discountPrice;
+    private double discountPricePercent;
+    private double discountPrice;
 
     public DiscountedProduct(String namedAbs, int basePrice, double discountPricePercent) {
         super(namedAbs);
         this.basePrice = basePrice;
-        this.discountPricePercent = (int) discountPricePercent;
+        this.discountPricePercent = (double) discountPricePercent;
     }
     @Override
     public int getPrice() {
-        int discount = (basePrice*discountPricePercent)/100;
-        return discountPrice =basePrice-discount;
+        double discount = (basePrice*discountPricePercent)/100;
+        return (int) (discountPrice =basePrice-discount);
     }
     //<имя продукта со скидкой>: <стоимость> (<скидка>%)
     @Override
