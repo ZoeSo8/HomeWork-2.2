@@ -70,5 +70,7 @@ public class Add {
         System.out.println(" \"" + searchQuery2 + "\": " + Arrays.toString(SearchEngine.search(searchQuery2)));
         String searchQuery3 = "Ананас";
         System.out.println(" \"" + searchQuery3 + "\": " + Arrays.toString(SearchEngine.search(searchQuery3)));
+
     }
+
     }

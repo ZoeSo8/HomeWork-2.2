@@ -30,6 +30,8 @@ public class Article implements Searchable {
     public String searchTerm() {
         return "ARTICLE";
     }
+
+
 }
 
 
