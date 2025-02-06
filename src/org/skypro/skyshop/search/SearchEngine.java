@@ -1,11 +1,9 @@
-package org.skypro.skyshop;
-
-import java.util.Arrays;
+package org.skypro.skyshop.search;
 
 public class SearchEngine {
-    public static Searchable[] items;
-    public static final int MAX_SEARCH_RESULTS =5;
-    public static int count;
+    private static Searchable[] items;
+    private static final int MAX_SEARCH_RESULTS =5;
+    private static int count;
 
     public SearchEngine (int size){
         items = new Searchable[size];

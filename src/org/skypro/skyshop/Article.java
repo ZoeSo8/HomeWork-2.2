@@ -1,24 +1,26 @@
 package org.skypro.skyshop;
 
+import org.skypro.skyshop.search.Searchable;
+
 public class Article implements Searchable {
 
-    private final String articleTitle;
-    private final String articleText;
+    private final String title;
+    private final String text;
 
-    public Article(String articleTitle, String articleText) {
-        this.articleTitle = articleTitle;
-        this.articleText = articleText;
+    public Article(String title, String text) {
+        this.title = title;
+        this.text = text;
     }
-    public String getArticleTitle() {
-        return articleTitle;
+    public String getTitle() {
+        return title;
     }
 
-    public String getArticleText() {
-        return articleText;
+    public String getText() {
+        return text;
     }
     @Override
     public String toString() {
-        return "Название статьи: " + this.articleTitle+"\nТекст статьи: " + this.articleText;
+        return "Название статьи: " + this.title+"\nТекст статьи: " + this.text;
     }
 
     @Override
