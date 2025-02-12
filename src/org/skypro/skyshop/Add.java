@@ -4,6 +4,7 @@ import org.skypro.skyshop.product.DiscountedProduct;
 import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
+import org.skypro.skyshop.search.BestResultNotFound;
 import org.skypro.skyshop.search.SearchEngine;
 
 import java.util.Arrays;
@@ -25,6 +26,7 @@ public class Add {
         SearchEngine request1 = new SearchEngine(5);
         Article pencilDescribe = new Article("Описание карандаш", "Меловой синий");
         Article boxDescribe = new Article("Описание коробки", "Малая подарочная");
+        Article markerDescribe = new Article("Описание маркер","Широкий синий");
 
 
         System.out.println("Добавление продукта в корзину");
@@ -64,14 +66,29 @@ public class Add {
         request1.add(slimeFix);
         request1.add(penDescribe);
         request1.add(boxDescribe);
+        request1.add(markerDescribe);
 
         String searchQuery1 = "Ручка";
-        System.out.println(" \"" + searchQuery1 + "\": " + Arrays.toString(SearchEngine.search(searchQuery1)));
+        System.out.println(" \"" + searchQuery1 + "\": " + Arrays.toString(request1.search(searchQuery1)));
         String searchQuery2 = "Малая";
-        System.out.println(" \"" + searchQuery2 + "\": " + Arrays.toString(SearchEngine.search(searchQuery2)));
+        System.out.println(" \"" + searchQuery2 + "\": " + Arrays.toString(request1.search(searchQuery2)));
+        try {
+            String searchQuery5 = "Штука";
+            System.out.println(" \"" + searchQuery5 + "\": " + (request1.searchBestResult(searchQuery5)));
+        }
         String searchQuery3 = "Ананас";
-        System.out.println(" \"" + searchQuery3 + "\": " + Arrays.toString(SearchEngine.search(searchQuery3)));
+        System.out.println(" \"" + searchQuery3 + "\": " + (request1.searchBestResult(searchQuery3)));
+        String searchQuery4 = "Описание";
+        System.out.println(" \"" + searchQuery4 + "\": " + (request1.searchBestResult(searchQuery4)));
 
+        try {
+            Product copybook = new SimpleProduct("Тетрадь", -55);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
+        Product discountCopybook = new DiscountedProduct("Тетрадь",100, 110);
+        System.out.println(discountCopybook);
     }
 
     }

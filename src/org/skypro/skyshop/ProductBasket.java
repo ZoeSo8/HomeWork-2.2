@@ -2,7 +2,9 @@ package org.skypro.skyshop;
 
 import org.skypro.skyshop.product.Product;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class ProductBasket {
     private Product[] products;

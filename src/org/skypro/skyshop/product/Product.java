@@ -6,7 +6,13 @@ public abstract class Product implements Searchable {
     private String namedAbs;
 
     public Product (String namedAbs) {
+        if (isStringNullOrBlank(namedAbs)) {
+            throw new IllegalArgumentException("Наименование не может быть пустым");
+        }
         this.namedAbs = namedAbs;
+    }
+    private boolean isStringNullOrBlank(String namedAbs) {
+        return namedAbs==null || namedAbs.isBlank();
     }
 
     public String getNamedAbs() {
@@ -14,10 +20,6 @@ public abstract class Product implements Searchable {
     }
     public abstract int getPrice();
 
-
-    public void setNamed(String namedAbs) {
-        this.namedAbs = namedAbs;
-    }
         @Override
         public String toString() {
             return "Наименование " + this.namedAbs;
@@ -50,5 +52,6 @@ public abstract class Product implements Searchable {
         return "PRODUCT";
     }
 }
+
 
 
