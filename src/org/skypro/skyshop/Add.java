@@ -72,9 +72,12 @@ public class Add {
         System.out.println(" \"" + searchQuery1 + "\": " + Arrays.toString(request1.search(searchQuery1)));
         String searchQuery2 = "Малая";
         System.out.println(" \"" + searchQuery2 + "\": " + Arrays.toString(request1.search(searchQuery2)));
+
         try {
             String searchQuery5 = "Штука";
             System.out.println(" \"" + searchQuery5 + "\": " + (request1.searchBestResult(searchQuery5)));
+        } catch (BestResultNotFound e) {
+            throw new RuntimeException(e);
         }
         String searchQuery3 = "Ананас";
         System.out.println(" \"" + searchQuery3 + "\": " + (request1.searchBestResult(searchQuery3)));

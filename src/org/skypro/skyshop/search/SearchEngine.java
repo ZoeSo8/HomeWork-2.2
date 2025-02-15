@@ -30,7 +30,7 @@ public class SearchEngine {
         }
         return results;
     }
-    public Searchable searchBestResult (String query){
+    public Searchable searchBestResult (String query) throws BestResultNotFound {
         int maxAmount =0;
         Searchable bestResult= null;
         for (Searchable current: items){
@@ -50,39 +50,10 @@ public class SearchEngine {
             }
         }
         if (query == null){
-            try {
-                throw new BestResultNotFound(query);
-            } catch (BestResultNotFound e) {
-                throw new RuntimeException(e);
+            throw new BestResultNotFound(query);
             }
-        }
         return bestResult;
     }
-
-//   public static Searchable[] search(String query) {
-//        Searchable[] results = new Searchable[MAX_SEARCH_RESULTS];
-//        count = 0;
-//        int index = 0;
-//        int indexSubstring = results.indexOf(query, index);
-//        for (Searchable searchable : items) {
-//            while (indexSubstring != -1) {
-//                if (searchable != null && searchable.gettingContentType().contains(query)) {
-//                    results[count++] = searchable;
-//                    index = index + results.length();
-//                    indexSubstring = results.indexOf(query, index);
-//                }
-//                if (results == null) {
-//                    throw new BestResultNotFound(query);
-//                }
-//                return results;
-//                if (count >= MAX_SEARCH_RESULTS) {
-//                    break;
-//                }
-//
-//            }
-//        }
-//        return results;
-
 }
 
 
