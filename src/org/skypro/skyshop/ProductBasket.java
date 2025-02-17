@@ -4,27 +4,23 @@ import org.skypro.skyshop.product.Product;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 public class ProductBasket {
-    private Product[] products;
+    private List<Product> products;
     private int size = 0;
     private static int MAX_PRODUCTS = 5;
 
 
     public ProductBasket() {
-        this.products = new Product[MAX_PRODUCTS];
-
+        this.products = new ArrayList<>();
     }
 
     public void addProduct(Product product) {
-        if (size < MAX_PRODUCTS) {
-            products [size] = product;
-            size++;
-        } else {
-            System.out.println("Невозможно добавить продукт");
-        }
+        products.add(product);
     }
+
     public int summBasket() {
         int summ = 0;
         for (Product product : products) {
@@ -50,27 +46,29 @@ public class ProductBasket {
             System.out.println("В корзине пусто");
             return;
         }
-        for (Product product: products){
-            if (product !=null){
+        for (Product product : products) {
+            if (product != null) {
                 System.out.println(product);
             }
         }
         System.out.println("Итого специальных продуктов: " + summSpecialProduct());
         System.out.println("Итого: " + summBasket());
     }
-    public int summSpecialProduct (){
+
+    public int summSpecialProduct() {
         int SpecialProduct = 0;
-        for (Product product: products) {
+        for (Product product : products) {
             if ((product != null && product.isSpecial()) == true) {
                 if (product.isSpecial()) ;
                 SpecialProduct++;
             }
         }
-            return SpecialProduct;
-        }
+        return SpecialProduct;
+    }
+
     public boolean findByName(Product productToFind) {
         for (Product product : products) {
-            if (product != null && productToFind !=null && product.getNamedAbs().equals(productToFind.getNamedAbs())) {
+            if (product != null && productToFind != null && product.getNamedAbs().equals(productToFind.getNamedAbs())) {
                 return true;
             }
         }
@@ -78,7 +76,20 @@ public class ProductBasket {
     }
 
     public void clearBasket() {
-        Arrays.fill(products, null);
+        products.clear();
+    }
+
+       public List<Product> removeProductsByName(String nameDelete) {
+           Iterator<Product> iterator = products.listIterator();
+           List<Product> removedProducts = new ArrayList<>();
+        while (iterator.hasNext() && products!=null) {
+            Product product = iterator.next();
+            if (product.getNamedAbs().equalsIgnoreCase(nameDelete)) {
+                removedProducts.add(product);
+                iterator.remove();
+            }
+        }
+        return removedProducts;
     }
 
 }
