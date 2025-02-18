@@ -26,7 +26,7 @@ public class Add {
         SearchEngine request1 = new SearchEngine(5);
         Article pencilDescribe = new Article("Описание карандаш", "Меловой синий");
         Article boxDescribe = new Article("Описание коробки", "Малая подарочная");
-        Article markerDescribe = new Article("Описание маркер","Широкий синий");
+        Article markerDescribe = new Article("Описание маркер", "Широкий синий");
 
 
         System.out.println("Добавление продукта в корзину");
@@ -35,8 +35,6 @@ public class Add {
         basket1.addProduct(pencil);
         basket1.addProduct(book);
         basket1.addProduct(box);
-        System.out.println("Добавление продукта в корзину в которой нет свободного места.");
-        basket1.addProduct(marker);
         System.out.println("Печать содержимого корзины с несколькими товарами.");
         basket1.printBasket();
         System.out.println("Получение стоимости корзины с несколькими товарами.");
@@ -45,8 +43,6 @@ public class Add {
         System.out.println(basket1.findByName(pen));
         System.out.println("Поиск товара, которого нет в корзине.");
         System.out.println(basket1.findByName(sticker));
-        System.out.println("Очистка корзины.");
-        basket1.clearBasket();
         System.out.println("Печать содержимого пустой корзины.");
 
         basket2.printBasket();
@@ -90,8 +86,13 @@ public class Add {
             System.out.println(e.getMessage());
         }
 
-        Product discountCopybook = new DiscountedProduct("Тетрадь",100, 110);
+        Product discountCopybook = new DiscountedProduct("Тетрадь", 100, 110);
         System.out.println(discountCopybook);
-    }
+        System.out.println(basket1.removeProductsByName("ручка"));
+        basket1.printBasket();
+        System.out.println(basket1.removeProductsByName("маркер"));
+
 
     }
+
+}
