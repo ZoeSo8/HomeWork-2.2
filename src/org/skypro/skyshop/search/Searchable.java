@@ -1,5 +1,7 @@
 package org.skypro.skyshop.search;
 
+import org.skypro.skyshop.product.Product;
+
 public interface Searchable {
     String searchTerm ();
     String gettingContentType ();
@@ -9,4 +11,7 @@ public interface Searchable {
     }
 
 
+    boolean containsKey(String query);
+
+    boolean containsValue(Product query);
 }

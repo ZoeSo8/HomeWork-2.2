@@ -1,5 +1,8 @@
 package org.skypro.skyshop.search;
+import org.skypro.skyshop.product.Product;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class SearchEngine {
@@ -18,11 +21,20 @@ public class SearchEngine {
             System.out.println("Массив заполнен. Невозможно добавить новый элемент.");
         }
     }
+
     public List<Searchable> search(String query) {
         List<Searchable> results = new ArrayList<>();
-        int i = 0;
         for (Searchable searchable : items) {
-            if (searchable != null && searchable.gettingContentType().contains(query)) {
+            if (searchable != null && searchable.containsKey(query)) {
+                results.add(searchable);
+            }
+        }
+        return results;
+    }
+    public List<Searchable> search(Product query) {
+        List<Searchable> results = new ArrayList<>();
+        for (Searchable searchable : items) {
+            if (searchable != null && searchable.containsValue(query)) {
                 results.add(searchable);
             }
         }
