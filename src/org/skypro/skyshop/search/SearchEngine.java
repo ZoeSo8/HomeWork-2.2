@@ -1,9 +1,7 @@
 package org.skypro.skyshop.search;
 import org.skypro.skyshop.product.Product;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class SearchEngine {
     private List<Searchable> items;
@@ -22,20 +20,20 @@ public class SearchEngine {
         }
     }
 
-    public List<Searchable> search(String query) {
-        List<Searchable> results = new ArrayList<>();
+    public Map<String, Searchable> search(String query) {
+        Map<String,Searchable> results = new TreeMap<>(Comparator.reverseOrder());
         for (Searchable searchable : items) {
-            if (searchable != null && searchable.containsKey(query)) {
-                results.add(searchable);
+            if (searchable != null && searchable. containsKey(query)) {
+                results.put(searchable.searchTerm(),searchable);
             }
         }
         return results;
     }
-    public List<Searchable> search(Product query) {
-        List<Searchable> results = new ArrayList<>();
+    public Map<String, Searchable> search(Product query) {
+        Map<String,Searchable> results = new TreeMap<>(Comparator.reverseOrder());
         for (Searchable searchable : items) {
             if (searchable != null && searchable.containsValue(query)) {
-                results.add(searchable);
+                results.put(searchable.searchTerm(),searchable);
             }
         }
         return results;
