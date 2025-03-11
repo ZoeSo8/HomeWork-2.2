@@ -6,8 +6,10 @@ import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
 import org.skypro.skyshop.search.BestResultNotFound;
 import org.skypro.skyshop.search.SearchEngine;
+import org.skypro.skyshop.search.Searchable;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 public class Add {
     public static void main(String[] args) {
@@ -23,10 +25,11 @@ public class Add {
         ProductBasket basket2 = new ProductBasket();
         ProductBasket basket3 = new ProductBasket();
         Article penDescribe = new Article("Описание ручки", "Гелевая черная");
-        SearchEngine request1 = new SearchEngine(5);
         Article pencilDescribe = new Article("Описание карандаш", "Меловой синий");
         Article boxDescribe = new Article("Описание коробки", "Малая подарочная");
         Article markerDescribe = new Article("Описание маркер", "Широкий синий");
+
+
 
 
         System.out.println("Добавление продукта в корзину");
@@ -45,6 +48,8 @@ public class Add {
         System.out.println(basket1.findByName(sticker));
         System.out.println("Печать содержимого пустой корзины.");
 
+        Collections.sort(basket1, new SearchEngine.NameComparator());
+        for (ProductBasket productBasket: basket1) System.out.println(productBasket.getNameAbs);
         basket2.printBasket();
         System.out.println("Получение стоимости пустой корзины.");
 
@@ -65,7 +70,7 @@ public class Add {
         request1.add(markerDescribe);
 
         String searchQuery1 = "Ручка";
-        System.out.println(" \"" + searchQuery1 + "\": " + Arrays.toString(request1.search(searchQuery1)));
+        System.out.println(" \"" + searchQuery1 + "\": " + Arrays.toString(request1.add(searchQuery1)));
         String searchQuery2 = "Малая";
         System.out.println(" \"" + searchQuery2 + "\": " + Arrays.toString(request1.search(searchQuery2)));
 
