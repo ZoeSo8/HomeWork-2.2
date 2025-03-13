@@ -4,8 +4,8 @@ import org.skypro.skyshop.product.Product;
 
 import java.util.*;
 
-public class ProductBasket {
-    private Map<String, List> products = new HashMap<>();
+public class ProductBasket  {
+    private Map<String, Set<Product>> products = new HashMap<>();
     private int size = 0;
 
 
@@ -14,14 +14,14 @@ public class ProductBasket {
     }
 
     public void addProduct(String namedAbs, Product product) {
-       List<Product> productList= products.getOrDefault(namedAbs, new ArrayList<>());
-       productList.add(product);
-       products.put(namedAbs,productList);}
+       Set<Product> productSet = products.getOrDefault(namedAbs, new HashSet<>());
+       productSet.add(product);
+       products.put(namedAbs, productSet);}
 
     public int summBasket() {
         int summ = 0;
-        for (List<Product> productList : products.values()) {
-            for (Product product : productList) {
+        for (Set<Product> productSet : products.values()) {
+            for (Product product : productSet) {
                 if (product != null) {
                     summ += product.getPrice();
                 }
@@ -32,8 +32,8 @@ public class ProductBasket {
 
     public int getProductCount() {
         int count = 1;
-        for (List<Product> productList : products.values()) {
-            for (Product product : productList) {
+        for (Set<Product> productSet : products.values()) {
+            for (Product product : productSet) {
                 if (product != null) {
                     count++;
                 }
@@ -47,8 +47,8 @@ public class ProductBasket {
             System.out.println("В корзине пусто");
             return;
         }
-        for (List<Product> productList : products.values()) {
-            for (Product product : productList) {
+        for (Set<Product> productSet : products.values()) {
+            for (Product product : productSet) {
                 if (product != null) {
                     System.out.println(product);
                 }
@@ -60,8 +60,8 @@ public class ProductBasket {
 
     public int summSpecialProduct() {
         int SpecialProduct = 0;
-        for  (List<Product> productList : products.values()) {
-            for (Product product : productList) {
+        for  (Set<Product> productSet : products.values()) {
+            for (Product product : productSet) {
                 if ((product != null && product.isSpecial()) == true) {
                     if (product.isSpecial()) ;
                     SpecialProduct++;
@@ -72,8 +72,8 @@ public class ProductBasket {
     }
 
     public boolean findByName(Product productToFind) {
-        for (List<Product> productList : products.values()) {
-            for (Product product : productList) {
+        for (Set<Product> productSet : products.values()) {
+            for (Product product : productSet) {
             if (product != null && productToFind != null && product.getNamedAbs().equals(productToFind.getNamedAbs())) {
                 return true;
             }
@@ -86,9 +86,9 @@ public class ProductBasket {
         products.clear();
     }
 
-       public List<Product> removeProductsByName(String nameDelete) {
-           Iterator<Product> iterator = products.listIterator();
-           List<Product> removedProducts = new ArrayList<>();
+       public Set<Product> removeProductsByName(String nameDelete) {
+           Iterator<Product> iterator = products.SetIterator();
+           Set<Product> removedProducts = new HashSet<>();
         while (iterator.hasNext() && products!=null) {
             Product product = iterator.next();
             if (product.getNamedAbs().equalsIgnoreCase(nameDelete)) {
