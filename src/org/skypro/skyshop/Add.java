@@ -5,6 +5,7 @@ import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
 import org.skypro.skyshop.search.BestResultNotFound;
+import org.skypro.skyshop.search.NameComparator;
 import org.skypro.skyshop.search.SearchEngine;
 import org.skypro.skyshop.search.Searchable;
 
@@ -48,7 +49,7 @@ public class Add {
         System.out.println(basket1.findByName(sticker));
         System.out.println("Печать содержимого пустой корзины.");
 
-        Collections.sort(basket1, new SearchEngine.NameComparator());
+        Collections.sort(basket1, new NameComparator());
         for (ProductBasket productBasket: basket1) System.out.println(productBasket.getNameAbs);
         basket2.printBasket();
         System.out.println("Получение стоимости пустой корзины.");

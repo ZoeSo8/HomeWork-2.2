@@ -23,15 +23,7 @@ public class SearchEngine {
     }
 
 
-    public static class NameComparator implements Comparator<Product> {
-        @Override
-        public int compare(Product a1, Product a2) {
-            int lengthComparison = Integer.compare(a1.getNamedAbs().length(), a2.getNamedAbs().length());
-            if (lengthComparison != 0) {
-                return -lengthComparison;
-            }
-            return a1.getNamedAbs().compareTo(a2.getNamedAbs());
-        }
+
 
         public Map<String, Searchable> search(Article query) {
             Map<String, Searchable> results = new TreeMap<>(Comparator.reverseOrder());
