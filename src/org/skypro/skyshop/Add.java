@@ -11,9 +11,13 @@ import org.skypro.skyshop.search.Searchable;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Add {
     public static void main(String[] args) {
+
         Product pen = new SimpleProduct("Ручка", 100);
         Product book = new SimpleProduct("Книга", 500);
         Product box = new SimpleProduct("Коробка", 200);
