@@ -2,6 +2,8 @@ package org.skypro.skyshop.search;
 
 import org.skypro.skyshop.product.Product;
 
+import java.util.Collection;
+
 public interface Searchable {
     String searchTerm ();
     String gettingContentType ();
@@ -14,4 +16,6 @@ public interface Searchable {
     boolean containsKey(String query);
 
     boolean containsValue(Product query);
+
+    Collection<Object> getSearchTerm();
 }

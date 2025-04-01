@@ -19,15 +19,10 @@ public class ProductBasket  {
        products.put(namedAbs, productSet);}
 
     public int summBasket() {
-        int summ = 0;
-        for (Set<Product> productSet : products.values()) {
-            for (Product product : productSet) {
-                if (product != null) {
-                    summ += product.getPrice();
-                }
-            }
-        }
-        return summ;
+        return products.values()
+                .stream()
+                .flatMap(Collection::stream)
+                .mapToInt(Product::getPrice).sum();
     }
 
     public int getProductCount() {
@@ -46,30 +41,23 @@ public class ProductBasket  {
         if (size == 0) {
             System.out.println("В корзине пусто");
             return;
+        } else {
+            products.values()
+                    .stream()
+                    .flatMap(Collection::stream)
+                    .forEach(System.out::println);
+            System.out.println("Итого специальных продуктов: " + summSpecialProduct());
+            System.out.println("Итого: " + summBasket());
         }
-        for (Set<Product> productSet : products.values()) {
-            for (Product product : productSet) {
-                if (product != null) {
-                    System.out.println(product);
-                }
-            }
-        }
-        System.out.println("Итого специальных продуктов: " + summSpecialProduct());
-        System.out.println("Итого: " + summBasket());
     }
 
     public int summSpecialProduct() {
-        int SpecialProduct = 0;
-        for  (Set<Product> productSet : products.values()) {
-            for (Product product : productSet) {
-                if ((product != null && product.isSpecial()) == true) {
-                    if (product.isSpecial()) ;
-                    SpecialProduct++;
-                }
-            }
-        }
-        return SpecialProduct;
-    }
+       return (int) products.values()
+               .stream()
+               .flatMap(Collection::stream)
+               .filter(Product::isSpecial)
+               .count();
+                   }
 
     public boolean findByName(Product productToFind) {
         for (Set<Product> productSet : products.values()) {
@@ -83,7 +71,7 @@ public class ProductBasket  {
     }
 
     public void clearBasket() {
-        products.clear();
+        this.products.clear();
     }
 
        public Set<Product> removeProductsByName(String nameDelete) {

@@ -3,13 +3,16 @@ import org.skypro.skyshop.Article;
 import org.skypro.skyshop.product.Product;
 import java.util.Comparator;
 import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class SearchEngine {
-    private Set<Searchable> items;
+    private final Set<Searchable> items;
     private int count;
 
-    public SearchEngine(int size) {
-        items = new HashSet<>();
+    public SearchEngine() {
+        this.items = new HashSet<>();
         count = 0;
     }
 
@@ -21,29 +24,11 @@ public class SearchEngine {
             System.out.println("Массив заполнен. Невозможно добавить новый элемент.");
         }
     }
+    public Set<String> search(String query) {
+        return items.stream()
+                .filter(searchable -> searchable.getSearchTerm().contains(query))
+                .collect(Collectors.toCollection(() -> new TreeSet<>(new NameComparator())));
 
-
-
-
-        public Map<String, Searchable> search(Article query) {
-            Map<String, Searchable> results = new TreeMap<>(Comparator.reverseOrder());
-            for (Searchable searchable : items) {
-                if (searchable != null && searchable.containsKey(query)) {
-                    results.put(searchable.searchTerm(), searchable);
-                }
-            }
-            return results;
-        }
-
-        public Map<String, Searchable> search(Product query) {
-            Map<String, Searchable> results = new TreeMap<>(Comparator.reverseOrder());
-            for (Searchable searchable : items) {
-                if (searchable != null && searchable.containsValue(query)) {
-                    results.put(searchable.searchTerm(), searchable);
-                }
-            }
-            return results;
-        }
 
         public Searchable searchBestResult(String query) throws BestResultNotFound {
             int maxAmount = 0;
